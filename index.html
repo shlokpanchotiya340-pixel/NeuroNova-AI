@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroNova AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{overflow-x:hidden;background:#0b0c17;color:#fff;position:relative;scroll-behavior:smooth;}
+body.light{background:#f9f9f9;color:#111;}
+header{position:fixed;top:0;width:100%;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);z-index:9999;}
+body.light header{background:rgba(255,255,255,0.9);}
+header .logo{font-weight:700;font-size:1.3rem;color:#00f0ff;text-shadow:0 0 5px #00f0ff;}
+.theme-btn{cursor:pointer;padding:6px 12px;border:2px solid #00f0ff;border-radius:25px;background:transparent;color:#00f0ff;z-index:10000;}
+.theme-btn:hover{background:#00f0ff;color:#0b0c17;}
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;position:relative;z-index:10;}
+.hero h1{font-size:2.5rem;margin-bottom:15px;font-weight:700;text-shadow:0 0 15px #00f0ff;opacity:0;transform:translateY(50px);transition:all 1s ease;}
+.hero p{font-size:1.2rem;margin-bottom:25px;text-shadow:0 0 10px #00f0ff;opacity:0;transform:translateY(50px);transition:all 1s ease 0.3s;}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;opacity:0;transform:translateY(50px);transition:all 1s ease 0.6s;}
+.hero .cta button{padding:12px 25px;border:none;border-radius:10px;font-weight:600;cursor:pointer;background:#00f0ff;color:#0b0c17;box-shadow:0 0 20px #00f0ff,0 0 40px #00f0ff,0 0 60px #00f0ff;position:relative;z-index:20;transition:all 0.3s;}
+.hero .cta button:hover{opacity:0.9;transform:scale(1.1);box-shadow:0 0 25px #00f0ff,0 0 50px #00f0ff,0 0 80px #00f0ff;}
+section{padding:80px 20px;max-width:1000px;margin:auto;position:relative;z-index:10;}
+section h2{text-align:center;font-size:1.8rem;margin-bottom:40px;font-weight:600;}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;}
+.card{background:rgba(255,255,255,0.05);padding:20px;border-radius:12px;text-align:center;transition:all 0.4s;backdrop-filter:blur(10px);opacity:0;transform:translateY(50px);position:relative;z-index:20;}
+body.light .card{background:rgba(0,0,0,0.05);}
+.card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 15px 30px rgba(0,255,255,0.25);}
+.card:hover h3{color:#00f0ff;text-shadow:0 0 10px #00f0ff,0 0 20px #00f0ff;}
+.card h3{margin-bottom:8px;font-size:1.2rem;transition:all 0.4s;}
+.card p{font-size:0.95rem;transition:all 0.4s;}
+.card button{margin-top:10px;padding:10px 20px;border:none;border-radius:8px;font-weight:500;background:#00f0ff;color:#0b0c17;cursor:pointer;transition:all 0.3s;box-shadow:0 0 10px #00f0ff;position:relative;z-index:20;}
+.card button:hover{opacity:0.85;transform:scale(1.05);box-shadow:0 0 20px #00f0ff;}
+.slider{overflow-x:auto;display:flex;gap:12px;scroll-behavior:smooth;padding-bottom:10px;}
+.slide{flex:0 0 180px;background:rgba(255,255,255,0.05);padding:12px;border-radius:10px;text-align:center;transition:all 0.3s;box-shadow:0 0 10px #00f0ff;opacity:0;transform:translateY(50px);position:relative;z-index:20;}
+.slide:hover{transform:scale(1.05);box-shadow:0 12px 25px rgba(0,255,255,0.25);}
+body.light .slide{background:rgba(0,0,0,0.05);}
+footer{text-align:center;padding:40px 20px;font-size:0.8rem;color:#888;position:relative;z-index:10;}
+.particle{position:absolute;width:4px;height:4px;background:#00f0ff;border-radius:50%;opacity:0.7;animation:floatParticle 12s linear infinite;z-index:1;}
+@keyframes floatParticle{0%{transform:translateY(0) translateX(0);}50%{transform:translateY(-150px) translateX(80px);}100%{transform:translateY(0) translateX(0);}}
+.planet{position:absolute;border-radius:50%;opacity:0.6;animation:rotatePlanet linear infinite;}
+.planet1{width:60px;height:60px;background:radial-gradient(circle,#00f0ff,#0b0c17);top:10%;left:20%;animation-duration:60s;}
+.planet2{width:80px;height:80px;background:radial-gradient(circle,#ff00ff,#0b0c17);top:50%;left:70%;animation-duration:90s;}
+.planet3{width:40px;height:40px;background:radial-gradient(circle,#00ffff,#0b0c17);top:70%;left:40%;animation-duration:50s;}
+@keyframes rotatePlanet{0%{transform:rotate(0deg) translateY(0) rotate(0deg);}100%{transform:rotate(360deg) translateY(0) rotate(-360deg);}}
+.star{position:absolute;width:2px;height:80px;background:linear-gradient(45deg,#fff,#00f0ff);opacity:0;animation:shootingStar linear infinite;}
+@keyframes shootingStar{0%{transform:translate(-100px,-100px) rotate(45deg);opacity:0;}50%{opacity:1;}100%{transform:translate(100vw,100vh) rotate(45deg);opacity:0;}}
+</style>
+</head>
+<body>
+
+<div class="planet planet1"></div>
+<div class="planet planet2"></div>
+<div class="planet planet3"></div>
+
+<header>
+  <div class="logo">NeuroNova AI</div>
+  <button class="theme-btn">Toggle Theme</button>
+</header>
+
+<section class="hero">
+  <h1>NeuroNova AI - Your AI Hub</h1>
+  <p>Open multiple AI websites from one platform</p>
+  <div class="cta">
+    <button onclick="window.open('https://chat.openai.com','_blank')">Chat AI</button>
+    <button onclick="window.open('https://www.canva.com/','_blank')">AI Design</button>
+  </div>
+</section>
+
+<section>
+  <h2>Explore AI Tools</h2>
+  <div class="tools">
+    <div class="card">
+      <h3>Chat AI</h3>
+      <p>Talk with AI chatbots</p>
+      <button onclick="window.open('https://chat.openai.com','_blank')">Open</button>
+    </div>
+    <div class="card">
+      <h3>Image Generator</h3>
+      <p>Create stunning AI images</p>
+      <button onclick="window.open('https://www.midjourney.com/','_blank')">Open</button>
+    </div>
+    <div class="card">
+      <h3>AI Design</h3>
+      <p>Generate templates & designs</p>
+      <button onclick="window.open('https://www.canva.com/','_blank')">Open</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Featured AI Websites</h2>
+  <div class="slider">
+    <div class="slide" onclick="window.open('https://chat.openai.com','_blank')">Chat GPT</div>
+    <div class="slide" onclick="window.open('https://www.canva.com/','_blank')">Canva AI</div>
+    <div class="slide" onclick="window.open('https://www.midjourney.com/','_blank')">MidJourney</div>
+  </div>
+</section>
+
+<footer>&copy; 2026 NeuroNova AI. All Rights Reserved.</footer>
+
+<script>
+// Theme toggle
+document.querySelector('.theme-btn').addEventListener('click',()=>document.body.classList.toggle('light'));
+
+// Particles
+for(let i=0;i<50;i++){
+  const p=document.createElement('div');p.className='particle';
+  p.style.top=Math.random()*100+'%';
+  p.style.left=Math.random()*100+'%';
+  p.style.width=p.style.height=Math.random()*5+3+'px';
+  p.style.animationDuration=(Math.random()*10+5)+'s';
+  document.body.appendChild(p);
+}
+
+// Shooting stars
+function shootingStar(){const s=document.createElement('div');s.className='star';
+s.style.top=Math.random()*50+'%';s.style.left='-50px';s.style.animationDuration=(Math.random()*1+0.5)+'s';
+document.body.appendChild(s);setTimeout(()=>s.remove(),1500);}
+setInterval(shootingStar,2000);
+
+// Scroll fade-in
+const faders = document.querySelectorAll('.hero h1, .hero p, .hero .cta, .card, .slide');
+const observer = new IntersectionObserver((entries,observer)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity='1';
+      entry.target.style.transform='translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.2});
+faders.forEach(fader=>observer.observe(fader));
+</script>
+</body>
+</html>
